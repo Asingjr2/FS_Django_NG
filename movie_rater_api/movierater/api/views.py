@@ -6,22 +6,33 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from .serializers import UserSerializer, GroupSerializer, MovieSerializer
-from .models import Movie
+from .serializers import UserSerializer, GroupSerializer, MovieSerializer, RatingSerializer
+from .models import Movie, Rating
 
 
 # Can add authentication per viewset or specific type of call
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated, )
     # Will add custom validation on entry into site
+    # permission_classes = (IsAuthenticated, )
     # authentication_classes = (TokenAuthentication, SessionAuthentication)
 
 
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    # Will add custom validation on entry into site
+    # permission_classes = (IsAuthenticated, )
+    # authentication_classes = (TokenAuthentication, SessionAuthentication)
+
+
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer
+    # Will add custom validation on entry into site
+    # permission_classes = (IsAuthenticated, )
+    # authentication_classes = (TokenAuthentication, SessionAuthentication)
     
 
 class GroupViewSet(viewsets.ModelViewSet):

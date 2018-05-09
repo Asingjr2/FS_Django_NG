@@ -1,15 +1,9 @@
 from django.urls import path, include
+from django.contrib import admin
 
-from rest_framework import routers 
-
-from api.views import UserViewSet, GroupViewSet
-
-router= routers.DefaultRouter()
-router.register(r"users", UserViewSet)
-router.register(r"groups", GroupViewSet)
 
 urlpatterns= [
-    path("", include(router.urls)), 
-    path("api-login", include("rest_framework.urls"))
+    path("admin/", admin.site.urls),
+    path("api/", include("api.urls")), 
 ]
 

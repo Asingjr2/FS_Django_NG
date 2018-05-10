@@ -10,16 +10,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User 
         fields = ("username", "email")
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ("url", "name")
-
 
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ("id",'title', "description")
+        fields = ("id",'title', "description", "avg_rating", "total_ratings")
 
 
 class RatingSerializer(serializers.ModelSerializer):

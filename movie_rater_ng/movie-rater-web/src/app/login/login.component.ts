@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { UserService } from "../user.service";
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private globalService: GlobalService,
   ) {
     this.loading = false,
     this.userLogin = this.fb.group({
@@ -36,8 +38,10 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser( this.userLogin.value).subscribe(
       response => {
         this.loading = false;
+        // Information saves in browser in storage (mozilla)
+        localStorage.setItem("token", response["token"]);
+        this.globalService.me = response["user"];
         console.log("response", response);
-        this.router.navigate(["home"]);
 
       },
       error => {
@@ -45,7 +49,6 @@ export class LoginComponent implements OnInit {
         console.log("error", error);
       }
     )
-    console.log(this.userLogin.value);
   }
 
   // goToHome(){

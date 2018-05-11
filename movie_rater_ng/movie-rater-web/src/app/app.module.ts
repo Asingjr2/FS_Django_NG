@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { GlobalService } from "./global.service";
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { RegisterComponent } from './register/register.component';
     MatIconModule,
     HttpModule,
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

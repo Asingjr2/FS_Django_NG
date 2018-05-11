@@ -8,7 +8,7 @@ from .models import Movie, Rating
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User 
-        fields = ("username", "email")
+        fields = ("id","username", "email", "password")
 
 
 class MovieSerializer(serializers.ModelSerializer):

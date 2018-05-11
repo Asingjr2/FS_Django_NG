@@ -1,3 +1,25 @@
-<p>
-  login works!
-</p>
+<h1> Login </h1>
+<form (ngSubmit)="onLogin()" [formGroup]="userLogin">
+  <input matInput placeholder="Username" formControlName="username" id="username">
+  <input matInput type="password" placeholder="Password" formControlName="password" id="password">
+  <button mat-ripple mat-raised-button type="submit" id="submit" [disabled]="userLogin.invalid || loading"
+   color="primary">Login</button><br>
+  </form>
+
+  <!-- <div class="form-group">
+    <mat-form-field class="example-full-width">
+        <mat-error *ngIf="userLogin.get('username').hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+      <mat-error *ngIf="userLogin.get('password').hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    </div>
+ <br>
+<mat-spinner *ngIf="loading"></mat-spinner> -->
+
+<a [routerLink]="['/register']">Don't have an accoount? Register here</a>

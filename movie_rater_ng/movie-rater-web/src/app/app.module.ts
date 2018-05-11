@@ -26,7 +26,7 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
     MatButtonModule,
@@ -34,7 +34,6 @@ import { RegisterComponent } from './register/register.component';
     MatInputModule,
     MatIconModule,
     HttpModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

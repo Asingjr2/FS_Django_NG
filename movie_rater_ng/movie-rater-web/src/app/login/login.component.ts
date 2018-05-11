@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
       response => {
         this.loading = false;
         console.log("response", response);
+        this.router.navigate(["home"]);
+
       },
       error => {
         this.loading = false;

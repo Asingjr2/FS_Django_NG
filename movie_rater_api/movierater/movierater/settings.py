@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # External
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     # Internal
     'api', 
 ]
@@ -40,6 +41,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = 'movierater.urls'
@@ -118,3 +121,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+CORS_ORIGIN_WHITELIST = (
+    "localhost:8000", 
+    "localhost:4200"
+)

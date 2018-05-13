@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private globalService: GlobalService,
   ) {
-    this.loading = false,
-    this.userLogin = this.fb.group({
+      this.userLogin = this.fb.group({
       username: ["", Validators.required],
       password: ["", Validators.required],
     });
@@ -31,6 +30,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = false;
+    if(localStorage.getItem("token") && localStorage.getItem("account")) {
+      this.globalService.me = JSON.parse(localStorage.getItem("account"));
+      this.router.navigate(["home"]);
+    }
   }
 
   onLogin() {
@@ -42,6 +46,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", response["token"]);
         this.globalService.me = response["user"];
         console.log("response", response);
+        this.router.navigate(["home"]);
 
       },
       error => {
@@ -50,8 +55,4 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-
-  // goToHome(){
-  //   this.router.navigate(["home"]);
-  // }
 }

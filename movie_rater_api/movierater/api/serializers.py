@@ -6,10 +6,18 @@ from .models import Movie, Rating
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    
+    # Adding additional kwargs that allow for variable to not show with simple api pulls
     class Meta:
         model = User 
         fields = ("id","username", "email", "password")
-
+        extra_kwargs = { "password" : { "write_only": True, "required": True}}
+        
+    # Overriding create method that takes advantage of django validated_data and hashes password automatically 
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
+        
 
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:

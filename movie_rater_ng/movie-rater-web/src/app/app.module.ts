@@ -9,6 +9,7 @@ import { MatButtonModule} from "@angular/material";
 import {  MatFormFieldModule } from "@angular/material/form-field";
 import {  MatInputModule } from "@angular/material/input";
 import {  MatIconModule } from "@angular/material/icon";
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -34,6 +35,7 @@ import { GlobalService } from "./global.service";
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatSnackBarModule,
     HttpModule,
   ],
   providers: [GlobalService],

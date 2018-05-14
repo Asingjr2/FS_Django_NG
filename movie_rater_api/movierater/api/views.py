@@ -36,12 +36,13 @@ class RatingViewSet(viewsets.ModelViewSet):
     # authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     # Creating method to allow a rating. Route is add as subset of ratings which is defined in urls and assigned to this viewset
+    # Information flowing from logic determined in rating service file within NG
     @list_route(methods=["POST"])
     def rate_movie(self, request):
         if "movie" in request.data and "user" in request.data and "stars" in request.data:
-            stars = int(request.data["stars"])
-            movie = Movie.objects.get(id=request.data["movie"])
             user = User.objects.get(id=request.data["user"])
+            movie = Movie.objects.get(id=request.data["movie"])
+            stars = int(request.data["stars"])
 
             # Creating logic to differentiate updates versus creates w/ response values
             try:
@@ -59,7 +60,6 @@ class RatingViewSet(viewsets.ModelViewSet):
                 serializer = MovieSerializer(movie, many=False)
                 response = {"message":"Rating created","result":serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
-
           
         else:
             response = {"message": "You need to pass all params"}

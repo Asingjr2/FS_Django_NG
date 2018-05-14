@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule} from "@angular/material";
 import {  MatFormFieldModule } from "@angular/material/form-field";
 import {  MatInputModule } from "@angular/material/input";
@@ -37,6 +38,7 @@ import { GlobalService } from "./global.service";
     MatIconModule,
     MatSnackBarModule,
     HttpModule,
+    NgbModule.forRoot(),
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]

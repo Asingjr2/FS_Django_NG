@@ -1,0 +1,49 @@
+<p>
+  home works!  Welcome {{ account.username }}
+</p>
+
+<button mat-ripple mat-raised-button color="warning" (click)="logout()">LOGOUT</button>
+<button mat-ripple mat-raised-button color="warning" (click)="addMovieClicked()">Add Movie</button>
+<div *ngFor="let movie of currentMovies;" (click)="movieDetail(movie)">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> {{ movie.title}}</td>
+        <td> {{ movie.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div *ngIf="selectedMovie && !isAddEditMode">
+    <h4> {{ selectedMovie.title }}</h4>
+    <h4> {{ selectedMovie.description }} </h4>
+    <ngb-rating [rate]="selectedMovie.avg_rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="true" max="5"></ngb-rating>
+    ( {{selectedMovie.total_rating}} )<br>
+    <button mat-ripple mat-raised-button color="warning" (click)="editMovieClicked()">Edit Movie</button>
+    <button mat-ripple mat-raised-button color="warning" (click)="deleteMovieClicked()">DELETE Movie</button>
+  </div>
+
+  <!-- Adding Rate functionality -->
+<h3> Rate It:</h3>
+<ngb-rating [rate]="my_rating" (hover)="hovered=$event" max="5"
+  (rateChange)="newRate($event)"></ngb-rating>
+
+  <div *ngIf="isAddEditMode">
+    <h2>
+      <span *ngIf="isEdit">EDIT</span>
+      <span *ngIf="!isEdit">NEW</span>
+      MOVIE
+    </h2>
+    <form (ngSubmit)="submitMovie()" [formGroup]="movieInput">
+      <input matInput placeholder="Title" formControlName="title" id="title">
+      <input matInput  placeholder="Description"  formControlName="description">
+      <button mat-ripple mat-raised-button type="submit" id="submit" [disabled]="movieInput.invalid"
+      color="primary">SAVE</button><br>
+    </form>
+  </div>

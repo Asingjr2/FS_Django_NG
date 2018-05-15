@@ -1,0 +1,11 @@
+<h1> Register </h1>
+<form (ngSubmit)="onRegister()" [formGroup]="userRegister">
+  <input matInput placeholder="Username" formControlName="username" id="username">
+  <input matInput type="email" placeholder="Email" formControlName="email" id="email">
+  <input matInput type="password" placeholder="Password" formControlName="password" id="password">
+  <button mat-ripple mat-raised-button type="submit" id="submit" [disabled]="userRegister.invalid || loading"
+   color="primary">Register</button><br>
+</form>
+<a [routerLink]="['/login']">login</a>
+
+
